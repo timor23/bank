@@ -6,6 +6,7 @@ const Transfer = ({fromUser, toUser, amount, calcBalance}) => {
     const [hasEnough, setHasEnough] = React.useState(true);
     const [userData, setUserData] = React.useState([]);
 
+
     React.useEffect(() => {
         getData();
     }, []);
@@ -43,7 +44,7 @@ const Transfer = ({fromUser, toUser, amount, calcBalance}) => {
 
     return (
         <>
-            <input/>
+            <input type="button" onClick={() => makeTransaction()}/>
         </>
     )
 }

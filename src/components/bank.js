@@ -9,6 +9,8 @@ const Bank = () => {
     const [user, setUser] = React.useState(null);
     const [userId, setUserId] = React.useState(1);
     const [transAmount, setTransAmount] = React.useState(0);
+    const [target, setTarget] = React.useState(null);
+
 
 
     React.useEffect(() => {
@@ -32,20 +34,27 @@ const Bank = () => {
 
     const handleType = (e) => {
         if (e.target.getAttribute("data-whatToAdd") === "id") {
+
             setUserId(e.target.value);
         }
         if (e.target.getAttribute("data-whatToAdd") === "deposit") {
             console.log(e.target.value);
+            setTransAmount(e.target.value);
         }
         if (e.target.getAttribute("data-whatToAdd") === "withdraw") {
+            setTransAmount(e.target.value);
 
         }
         if (e.target.getAttribute("data-whatToAdd") === "transfer") {
             setTransAmount(e.target.value);
+
+        }
+        if (e.target.getAttribute("data-whatToAdd") === "account") {
+            setTarget(e.target.value);
         }
 
 
-        }
+    }
 
     const calculateBalance = (userData) => {
         return new Promise((resolve, reject) => {
@@ -75,19 +84,22 @@ const Bank = () => {
                 <Users user={user} calcBalance={calculateBalance}/>
                 <label htmlFor="deposit">Deposit: </label>
                 {/*<input className={"deposit"} type="text" placeholder={"Enter Amount"}/>*/}
-                <InputButtons attribute={"deposit"} inputHandlerCallback={handleType} />
+                <InputButtons attribute={"deposit"} inputHandlerCallback={handleType}/>
                 <input type="button" value={"Deposit"}/>
                 <br/><br/>
                 <label htmlFor="withdraw">Withdraw: </label>
-                <InputButtons attribute={"withdraw"} placeholder={"Enter Amount"} inputHandlerCallback={handleType} />
+                <InputButtons attribute={"withdraw"} placeholder={"Enter Amount"} inputHandlerCallback={handleType}/>
                 <input type="button" value={"Withdraw"}/>
                 <br/><br/>
                 <label htmlFor="transfer">Transfer: </label>
-                <InputButtons attribute={"transfer"} placeholder={"Enter Amount"} inputHandlerCallback={handleType} />
-                <InputButtons attribute={"account"} placeholder={"Enter Account #"} inputHandlerCallback={handleType} />
-                <input type="button" value={"Transfer"}/>
+                <InputButtons attribute={"transfer"} placeholder={"Enter Amount"} inputHandlerCallback={handleType}/>
+                <InputButtons attribute={"account"} placeholder={"Enter Account #"} inputHandlerCallback={handleType}/>
+                {/*<input type="button" value={"Transfer"}/>*/}
                 {/*<Transfer />*/}
                 <br/><br/>
+                <div>
+                    <Transfer fromUser={user.id} toUser={target} amount={transAmount} calcBalance={calculateBalance}/>
+                </div>
 
 
             </div>}

@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 const Users = ({user, calcBalance}) => {
-    const [userData, setUserData] = React.useState([])
+    const [userData, setUserData] = React.useState([]);
     const [balance, setBalance] = React.useState(0);
     const [cash, setCash] = React.useState([]);
 

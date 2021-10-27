@@ -3,42 +3,37 @@ import axios from "axios";
 import Users from "./users";
 
 const Bank = () => {
-
     const [users, setUsers] = React.useState([]);
-    const [user, setUser] = React.useState("");
+    const [user, setUser] = React.useState(null);
     const [userId, setUserId] = React.useState(1);
-
-
     React.useEffect(() => {
         getData();
     }, []);
-
     const getData = async () => {
         await axios.get("https://6178f9f3aa7f340017404669.mockapi.io/users")
             .then(res => {
-                // console.log(res.data);
+                console.log('sdadasdasdasdasdas', res.data);
                 setUsers(res.data);
             });
     }
-
-    const handleClick = (e) => {
-        let usr = users.find(ele => ele.id == userId);
-        setUsers(usr);
+    const handleClick = () => {
+        let usr = users.find(ele => ele.id === userId);
+        console.log(usr);
+        setUser(usr);
     }
-
     const handleType = (e) => {
         setUserId(e.target.value);
     }
-
     return (
         <div>
             <input type="text" placeholder={"Enter user ID"} onChange={(e) => handleType(e)}/>
             <input type="button" value={"find"} onClick={handleClick}/>
-            {/*{users.map(user => {*/}
-            {/*    return <Users user={user}/>*/}
-            {/*})}*/}
-            <Users user={user} />
-
+            {user === null ? users.map(user => {
+                return <Users user={user}/>
+            }) : user.name}
+            {/* {users.map(user => {
+                return <Users user={user}/>
+            })} */}
         </div>
     )
 }

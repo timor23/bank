@@ -5,6 +5,9 @@ import Users from "./users";
 const Bank = () => {
 
     const [users, setUsers] = React.useState([]);
+    const [user, setUser] = React.useState("");
+    const [userId, setUserId] = React.useState(1);
+
 
     React.useEffect(() => {
         getData();
@@ -18,13 +21,24 @@ const Bank = () => {
             });
     }
 
+    const handleClick = (e) => {
+        let usr = users.find(ele => ele.id == userId);
+        setUser(usr);
+    }
 
+    const handleType = (e) => {
+        setUserId(e.target.value);
+    }
 
     return (
         <div>
+            <input type="text" placeholder={"Enter user ID"} onChange={(e) => handleType(e)}/>
+            <input type="button" value={"find"} onClick={handleClick}/>
             {users.map(user => {
                 return <Users user={user}/>
             })}
+            <Users user={user} />
+
         </div>
     )
 }

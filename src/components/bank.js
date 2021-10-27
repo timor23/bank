@@ -13,7 +13,7 @@ const Bank = () => {
     const getData = async () => {
         await axios.get("https://6178f9f3aa7f340017404669.mockapi.io/users")
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setUsers(res.data);
             });
     }

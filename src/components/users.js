@@ -11,14 +11,11 @@ const Users = ({user, calcBalance}) => {
     }, []);
 
     React.useEffect(() => {
-        const b = ()=>calcBalance(userData);
-        setBalance(b);
-        console.log("BBBBBBBB: ", balance)
-    }, [userData])
+         calcBalance(userData).then(value => {
+             setBalance(value);
+         });
+    }, [userData]);
 
-    React.useEffect(()=>{
-        console.log("BBBBBBBB: ", balance)
-    }, [])
 
     const getData = async () => {
         await axios.get(`https://6178f9f3aa7f340017404669.mockapi.io/users/${user.id}/bank`).then(res => {

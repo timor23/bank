@@ -23,7 +23,7 @@ const Bank = () => {
 
     const handleClick = (e) => {
         let usr = users.find(ele => ele.id == userId);
-        setUser(usr);
+        setUsers(usr);
     }
 
     const handleType = (e) => {
@@ -34,9 +34,9 @@ const Bank = () => {
         <div>
             <input type="text" placeholder={"Enter user ID"} onChange={(e) => handleType(e)}/>
             <input type="button" value={"find"} onClick={handleClick}/>
-            {users.map(user => {
-                return <Users user={user}/>
-            })}
+            {/*{users.map(user => {*/}
+            {/*    return <Users user={user}/>*/}
+            {/*})}*/}
             <Users user={user} />
 
         </div>

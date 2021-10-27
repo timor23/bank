@@ -9,6 +9,7 @@ const Bank = () => {
     React.useEffect(() => {
         getData();
     }, []);
+
     const getData = async () => {
         await axios.get("https://6178f9f3aa7f340017404669.mockapi.io/users")
             .then(res => {
@@ -29,10 +30,10 @@ const Bank = () => {
     const calculateBalance = (userData) => {
         let arr = [];
         userData.map(usr => {
-            console.log("cash: ", usr.cash);
+            // console.log("cash: ", usr.cash);
 
             (usr.isWithdrawal) ? arr.push(usr.cash * -1) : arr.push(usr.cash);
-            console.log(arr);
+            // console.log(arr);
 
             let arrSum = arr.reduce((a, b) => a + b, 0)
             console.log("balance: ", arrSum);

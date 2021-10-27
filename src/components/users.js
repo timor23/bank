@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const Users = ({user}) => {
+const Users = ({user, calcBalance}) => {
     const [userData, setUserData] = React.useState([])
     const [balance, setBalance] = React.useState(0);
     const [cash, setCash] = React.useState([]);
@@ -11,7 +11,7 @@ const Users = ({user}) => {
     }, []);
 
     React.useEffect(() => {
-        calculateBalance();
+        setBalance(()=>calcBalance(userData));
     }, [userData])
 
     const getData = async () => {
@@ -20,24 +20,24 @@ const Users = ({user}) => {
         });
     }
 
-    const calculateBalance = () => {
-        let arr = [];
-        userData.map(usr => {
-            console.log("cash: ", usr.cash);
-
-            (usr.isWithdrawal) ? arr.push(usr.cash * -1) : arr.push(usr.cash);
-            console.log(arr);
-
-            let arrSum = arr.reduce((a, b) => a + b, 0)
-            console.log("balance: ", arrSum);
-
-            setBalance(arrSum);
-        })
-    }
+    // const calculateBalance = () => {
+    //     let arr = [];
+    //     userData.map(usr => {
+    //         console.log("cash: ", usr.cash);
+    //
+    //         (usr.isWithdrawal) ? arr.push(usr.cash * -1) : arr.push(usr.cash);
+    //         console.log(arr);
+    //
+    //         let arrSum = arr.reduce((a, b) => a + b, 0)
+    //         console.log("balance: ", arrSum);
+    //
+    //         setBalance(arrSum);
+    //     })
+    // }
 
     return (
         <div>
-            <h2>Name: {user.name}</h2>
+            {/*<h2>Name: {user.name}</h2>*/}
             <h3>Account Balance: <span style={{color: balance < 0 ? "red" : "green"}}>{balance}</span></h3>
         </div>
     )

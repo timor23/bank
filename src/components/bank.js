@@ -7,9 +7,9 @@ import InputButtons from "./inputButtons";
 const Bank = () => {
     const [users, setUsers] = React.useState([]);
     const [user, setUser] = React.useState(null);
-    const [userId, setUserId] = React.useState(1);
-    const [transAmount, setTransAmount] = React.useState(0);
-    const [target, setTarget] = React.useState(null);
+    const [userId, setUserId] = React.useState('');
+    const [transAmount, setTransAmount] = React.useState('');
+    const [target, setTarget] = React.useState('');
 
 
 
@@ -36,21 +36,26 @@ const Bank = () => {
         if (e.target.getAttribute("data-whatToAdd") === "id") {
 
             setUserId(e.target.value);
+
+
         }
         if (e.target.getAttribute("data-whatToAdd") === "deposit") {
             console.log(e.target.value);
             setTransAmount(e.target.value);
+            console.log(transAmount)
         }
         if (e.target.getAttribute("data-whatToAdd") === "withdraw") {
-            setTransAmount(e.target.value);
-
+            setTransAmount(Number.parseInt(e.target.value));
+            console.log(transAmount)
         }
         if (e.target.getAttribute("data-whatToAdd") === "transfer") {
-            setTransAmount(e.target.value);
+            setTransAmount(Number.parseInt(e.target.value));
 
+            console.log(transAmount)
         }
         if (e.target.getAttribute("data-whatToAdd") === "account") {
             setTarget(e.target.value);
+            console.log(target)
         }
 
 
@@ -92,8 +97,8 @@ const Bank = () => {
                 <input type="button" value={"Withdraw"}/>
                 <br/><br/>
                 <label htmlFor="transfer">Transfer: </label>
-                <InputButtons attribute={"transfer"} placeholder={"Enter Amount"} inputHandlerCallback={handleType}/>
-                <InputButtons attribute={"account"} placeholder={"Enter Account #"} inputHandlerCallback={handleType}/>
+                <InputButtons value={"Enter Amount"} attribute={"transfer"}  inputHandlerCallback={handleType}/>
+                <InputButtons value={"To Account #"} attribute={"account"} inputHandlerCallback={handleType}/>
                 {/*<input type="button" value={"Transfer"}/>*/}
                 {/*<Transfer />*/}
                 <br/><br/>

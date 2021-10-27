@@ -14,7 +14,7 @@ const Transfer = ({fromUser, toUser, amount, calcBalance}) => {
     React.useEffect(() => {
         calcBalance(userData).then(value => {
             setUserBalance(value);
-            makeTransaction();
+            makeTransaction().then();
         });
     }, [userData]);
 
@@ -26,13 +26,11 @@ const Transfer = ({fromUser, toUser, amount, calcBalance}) => {
 
     const makeTransaction = async () => {
 
-
         if (userBalance >= amount) {
             setHasEnough(true);
         } else {
             setHasEnough(false);
         }
-
 
         if (hasEnough) {
             let data = {cash: amount, isWithdrawal: false};
@@ -44,7 +42,7 @@ const Transfer = ({fromUser, toUser, amount, calcBalance}) => {
 
     return (
         <>
-            <input type="button" onClick={() => makeTransaction()}/>
+            <input type="button" onClick={() => makeTransaction}/>
         </>
     )
 }

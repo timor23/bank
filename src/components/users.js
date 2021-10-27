@@ -30,11 +30,6 @@ const Users = ({user}) => {
     const calculateBalance = () => {
         let balance = 0;
         userData.map(usr=>{
-            // if (usr.isWithdrawal) {
-            //     balance += usr.cash;
-            // } else {
-            //     balance -= usr.cash;
-            // }
 
             balance = usr.isWithdrawal ? balance + usr.cash : balance - usr.cash;
         })
